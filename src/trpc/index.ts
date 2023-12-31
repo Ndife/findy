@@ -7,9 +7,9 @@ import { z } from 'zod'
 export const appRouter = router({
   authCallback: publicProcedure.query(async () => {
     const { getUser } = getKindeServerSession()
-    const user = getUser()
+    const user = getUser()  
 
-    if (!user.id || !user.email) {
+    if (!user|| !user.id || !user.email) {
       throw new TRPCError({ code: 'UNAUTHORIZED' })
     }
 
@@ -40,6 +40,24 @@ export const appRouter = router({
       }
     })
   }),
+  getFile: privateProcedure
+    .input(z.object({ key: z.string() }))
+    .mutation(async ({ctx, input}) => {
+      const { userId } = ctx
+
+      const file = await db.file.findFirst({
+        where: {
+          key: input.key,
+          userId
+        }
+      })
+
+      if (!file) {
+        throw new TRPCError({ code: 'NOT_FOUND'})
+      }
+
+      return file
+    }),
   deleteFile: privateProcedure
   .input(z.object({ id: z.string()}))
   .mutation(async ({ctx, input}) => {
