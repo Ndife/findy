@@ -33,7 +33,7 @@ const Page = () => {
       }
 
       if (error && error.data?.code === 'UNAUTHORIZED') {
-        router.push("/api/auth/login")
+        router.push('/sign-in')
       }
 
       
