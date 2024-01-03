@@ -21,7 +21,7 @@ const Navbar = () => {
                   variant: 'ghost',
                   size: 'sm',
                 })} 
-                href=''>
+                href='/pricing'>
                   Pricing
                 </Link>
                 <LoginLink             
