@@ -1,11 +1,11 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { ArrowRight, Menu } from "lucide-react"
+import { ArrowRight, Gem, Menu } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-const MobileNav = ({ isAuth }: {isAuth: boolean}) => {
+const MobileNav = ({ isAuth, isSubscribed }: {isAuth: boolean, isSubscribed: boolean}) => {
   const [isOpen, setOpen] = useState<boolean>(false)
 
   const toggleOpen = () => setOpen((prev) => !prev)
@@ -48,7 +48,7 @@ return (
             <li>
               <Link onClick={() => closeOnCurrent('/pricing')} className="flex items-center w-full font-semibold " href='/pricing'>
                 Pricing
-                </Link>
+              </Link>
             </li>
             </>
           ): (
@@ -60,8 +60,20 @@ return (
               </li>
               <li className="my-3 h-px w-full bg-gray-300"/>
               <li>
+              {isSubscribed ? (
+                <Link onClick={() => closeOnCurrent('/dashboard/billing')} className="flex items-center w-full font-semibold " href='/dashboard/billing'>
+                Manage Subscription</Link>
+              ): (
+                <Link onClick={() => closeOnCurrent('/pricing')} className="flex items-center w-full font-semibold " href='/pricing'>
+                  Upgrade{' '}
+                  <Gem className="text-blue-600 h-4 w-4 ml-1.5"/>
+                </Link>
+              )}
+            </li>
+              <li className="my-3 h-px w-full bg-gray-300"/>
+              <li>
                 <Link className="flex items-center w-full font-semibold " href='/sign-out'>
-                  Sign Out
+                  Log out
                   </Link>
               </li>
             </>

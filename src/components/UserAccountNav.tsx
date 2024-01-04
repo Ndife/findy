@@ -12,9 +12,9 @@ interface UserAccountNavProps {
   email: string | undefined
   name: string
   imageUrl: string
+  subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>
 }
-const UserAccountNav = async ({ email, imageUrl, name}: UserAccountNavProps) => {
-  const subscriptionPlan = await getUserSubscriptionPlan()
+const UserAccountNav = async ({ email, imageUrl, name, subscriptionPlan}: UserAccountNavProps) => {
 
   return (
     <DropdownMenu>
