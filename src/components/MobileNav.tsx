@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { ArrowRightLeft, Menu } from "lucide-react"
+import { ArrowRight, Menu } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -35,7 +35,7 @@ return (
             <>
             <li>
               <Link onClick={() => closeOnCurrent('/sign-up')} className="flex items-center w-full font-semibold text-green-600" href='/sign-up'>
-                <ArrowRightLeft className="ml-2 h-5 w-5"/>Get started
+                Get started <ArrowRight className="ml-2 h-5 w-5"/>
                 </Link>
             </li>
             <li className="my-3 h-px w-full bg-gray-300"/>
